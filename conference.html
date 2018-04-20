@@ -1,0 +1,50 @@
+
+<!--material-checkbox #done materialTooltip="Mark item as done">
+ </material-checkbox-->
+<span   (click)="onSelect()">{{conferenceInput.conferenceName}}</span>
+<button (click)="remove(iterator)" type="button" class="btn btn-default btn-lg">
+    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+</button>
+
+<template [ngIf]="isSelected">
+   <div>
+      <input  #newConferenceKids
+             (keyup.enter)="addConferenceKids(newConferenceKids.value)" >
+       <button  (click)="addConferenceKids(newConferenceKids.value)">Add</button>
+
+   <ol   style="text-indent: 1em" >
+      <li *ngFor="let c of  conferenceInput.conferenceKids" [class.selected]="isSelected" >
+
+      <liste
+              [conferenceInput]="c"
+      ></liste>
+   </li>
+      <hr>
+   </ol>
+   </div>
+</template>
+
+
+
+   <!-- <input #newConference1
+           (keyup.enter)="addConferenceName1(newConference1.value)">
+
+    <button (click)="addConferenceName1(newConference1.value)">Add</button>
+
+    <ul><li *ngFor="let newConferenceName1 of conferenceName1" [class.selected]="newConferenceName1 === selectedConference1"
+            (click)="onSelect1(newConferenceName1)" >
+        {{newConferenceName1}}
+    </li></ul>
+    <hr>
+    <div *ngIf="selectedConference1 != null">
+        <h2>{{selectedConference1}} details!</h2>
+        <liste2>
+
+        </liste2>
+    </div> -->
+
+
+
+
+
+

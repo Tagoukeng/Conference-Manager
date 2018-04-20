@@ -1,0 +1,50 @@
+<container class="container">
+    <div class="row">
+        <div class = "col-2"></div>
+        <div class="col-8"><h1>{{title}}</h1></div>
+        <div class = "col-2"></div>
+    </div>
+
+    <div class="row">
+        <div class="co"></div>
+        <div class=" col-8">
+            <form class="form-inline">
+                <label><h5>Conference : </h5></label> <pre>   </pre>
+                <input     #newConference
+                           (keyup.enter)="addConference(newConference.value)" >
+                <button type="button" (click)="addConference(newConference.value)">Add</button>
+            </form>
+
+            <p *ngIf="conferences.isEmpty">
+                Your Conference list is empty .
+            </p>
+            <div  *ngIf="conferences.isNotEmpty" >
+
+                <ol style="text-indent: 1em">
+                    <li *ngFor="let c of conferences ; let i=index" >
+                        <liste [conferenceInput] = "c" [iterator]=" i" [conferenceListInput]="conferences">
+
+                        </liste>
+                    </li>
+                </ol>
+
+            </div>
+
+
+
+        </div>
+        <div class = "col-2"></div>
+
+
+
+    </div>
+
+</container>
+
+
+
+
+
+
+
+
