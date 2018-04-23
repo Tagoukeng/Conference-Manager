@@ -1,28 +1,42 @@
-<container class="container">
+<div class="container-fluid">
+
     <div class="row">
-        <div class = "col-2"></div>
-        <div class="col-8"><h1>{{title}}</h1></div>
-        <div class = "col-2"></div>
+        <div class = "col-md-4"></div>
+        <div class="col-md-4" class="text-center"><h1>{{title}}</h1></div>
+        <div class = "col-md-4" ></div>
     </div>
 
     <div class="row">
-        <div class="co"></div>
-        <div class=" col-8">
-            <form class="form-inline">
-                <label><h5>Conference : </h5></label> <pre>   </pre>
-                <input     #newConference
-                           (keyup.enter)="addConference(newConference.value)" >
-                <button type="button" (click)="addConference(newConference.value)">Add</button>
+        <div class="col-md-2"></div>
+        <div class=" col-md-8">
+            <form class="form-horizontal" >
+                <div class="form-group">
+                    <label class="col-sm-2 " for="exampleInputText"><h4>Conference :</h4> </label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control " id="exampleInputText" placeholder="Conference Name"
+                               #newConference
+                               (keyup.enter)="addConference(newConference.value)" >
+                    </div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-primary" aria-label="Left Align" (click)="addConference(newConference.value)">
+                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </button>
+
+                    </div>
+
+                </div>
+
             </form>
 
-            <p *ngIf="conferences.isEmpty">
+
+            <p *ngIf="conferences.isEmpty" style="color: red">
                 Your Conference list is empty .
             </p>
-            <div  *ngIf="conferences.isNotEmpty" >
+            <div  *ngIf="conferences.isNotEmpty" class="row">
 
-                <ol style="text-indent: 1em">
+                <ol  style="text-indent: 1em">
                     <li *ngFor="let c of conferences ; let i=index" >
-                        <liste [conferenceInput] = "c" [iterator]=" i" [conferenceListInput]="conferences">
+                        <liste [conferenceInput] = "c" (removeConf)="removeConference(i)" >
 
                         </liste>
                     </li>
@@ -33,13 +47,13 @@
 
 
         </div>
-        <div class = "col-2"></div>
+        <div class = "col-md-2"></div>
 
 
 
     </div>
 
-</container>
+</div>
 
 
 
