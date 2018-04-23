@@ -1,22 +1,41 @@
 
 <!--material-checkbox #done materialTooltip="Mark item as done">
  </material-checkbox-->
-<span   (click)="onSelect()">{{conferenceInput.conferenceName}}</span>
-<button (click)="remove(iterator)" type="button" class="btn btn-default btn-lg">
-    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-</button>
+
+
+        <span   (click)="onSelect()">{{conferenceInput.conferenceName}}</span>
+        <button type="button" class="btn btn-primary" aria-label="Left Align"(click)="removeFromParent()">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+        </button>
+
+
+
 
 <template [ngIf]="isSelected">
-   <div>
-      <input  #newConferenceKids
-             (keyup.enter)="addConferenceKids(newConferenceKids.value)" >
-       <button  (click)="addConferenceKids(newConferenceKids.value)">Add</button>
 
+    <form class="form-horizontal" >
+        <div class="form-group">
+
+            <div class="col-sm-10">
+                <input type="text" class="form-control " id="exampleInputText" placeholder="Conference Name"
+                       #newConferenceKids
+                       (keyup.enter)="addConferenceKids(newConferenceKids.value)" >
+            </div>
+            <div class="col-sm-2">
+                <button type="button" class="btn btn-primary" aria-label="Left Align" (click)="addConferenceKids(newConferenceKids.value)">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
+            </div>
+
+        </div>
+
+    </form>
+<div>
    <ol   style="text-indent: 1em" >
-      <li *ngFor="let c of  conferenceInput.conferenceKids" [class.selected]="isSelected" >
+      <li *ngFor="let c of  conferenceInput.conferenceKids; let i=index " [class.selected]="isSelected" >
 
       <liste
-              [conferenceInput]="c"
+              [conferenceInput]="c" (removeConf)="remove(i)"
       ></liste>
    </li>
       <hr>
