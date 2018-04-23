@@ -1,4 +1,5 @@
 
+import 'dart:async';
 import 'package:angular/angular.dart';
 import 'package:angular_forms/angular_forms.dart';
 import 'package:angular_components/angular_components.dart';
@@ -16,7 +17,7 @@ class Conference {
 @Component(
   selector: 'my-app',
   templateUrl : 'app_component.html',
-  //styleUrls: const ['list_component.css'],
+  styleUrls: const ['list_component.css'],
   directives: const [CORE_DIRECTIVES,formDirectives,Conference,ListComponent, materialDirectives,],
   providers: const [materialProviders ],
 )
@@ -31,13 +32,14 @@ class AppComponent {
       conferences.add(newName);
     }
   }
-
+ Conference removeConference(int index) => conferences.removeAt(index);
 
 }
 
 @Component(
   selector: 'liste',
   templateUrl :'conference.html',
+  styleUrls: const ['list_component.css'],
   directives: const [CORE_DIRECTIVES,formDirectives,AppComponent,ListComponent,materialDirectives,],
   providers: const [materialProviders ],
 )
@@ -46,15 +48,15 @@ class ListComponent {
   @Input()
   Conference conferenceInput;
 
-  @Input()
-  List<Conference> conferenceListInput;
-
-  @Input()
-  int iterator;
+  final _removeEvent = new StreamController<Null>();
+  @Output()
+  get removeConf => _removeEvent.stream;
 
 
 
   bool isSelected;
+
+
 
 
   void addConferenceKids(String newConferenceKidsName){
@@ -64,11 +66,13 @@ class ListComponent {
     }
 
   }
+Conference remove(int index) => conferenceInput.conferenceKids.removeAt(index);
+  void removeFromParent() => _removeEvent.add(null);
+  
 
-  Conference remove(int index) =>  conferenceListInput.removeAt(index);
 
   void onReorder(ReorderEvent e) =>
-      conferenceListInput.insert(e.destIndex,  conferenceListInput.removeAt(e.sourceIndex));
+      conferenceInput.conferenceKids.insert(e.destIndex,  conferenceInput.conferenceKids.removeAt(e.sourceIndex));
  /**
   ButtonElement deleteButton;
   InputElement toDoInput;
