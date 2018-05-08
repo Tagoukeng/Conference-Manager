@@ -1,0 +1,14 @@
+package com.conference.microConference.dao;
+import com.conference.microConference.model.Conference;
+import java.util.List;
+
+public interface ConferenceDao {
+    public List<Conference> findAll();
+
+    public Conference ConferencefindByName(String name);
+
+    public Conference Conferencesave(Conference conf);
+
+}
+
+
