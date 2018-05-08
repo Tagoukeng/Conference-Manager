@@ -1,0 +1,45 @@
+package com.conference.microConference.dao;
+
+import com.conference.microConference.model.Conference;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+/*
+Diese Klasse soll normalerweise mit meiner Database kommunizieren
+um daten zu holen bzw. zu speichern
+wir erstellen stattdessen locale conference
+ */
+
+@Repository
+public class ConferenceDaoImpl implements ConferenceDao {
+
+    public static List<Conference> conferences = new ArrayList<>();
+    public static Conference conf_a = new Conference("a");
+    static {
+        conferences.add(new Conference("conf1"));
+        conferences.add(new Conference("conf2", Arrays.asList(conf_a)));
+    }
+    @Override
+    public List<Conference> findAll() {
+        return conferences;
+    }
+
+    @Override
+    public Conference ConferencefindByName(String name) {
+        for (Conference c : conferences ){
+            if(c.getNameOfConference()== name){
+                return c;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Conference Conferencesave(Conference conf) {
+        conferences.add(conf);
+        return conf;
+
+    }
+}
