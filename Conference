@@ -1,0 +1,49 @@
+package com.conference.microConference.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Conference {
+    private String nameOfConference;
+    private List<Conference> listOfConference = new ArrayList<>();
+
+    // default constructor
+    public Conference() {
+
+    }
+
+    // constructor for tests
+
+    public Conference(String name){
+        this.nameOfConference=name;
+    }
+
+    public Conference(String name , List<Conference> list){
+        this.nameOfConference = name;
+        this.listOfConference = list;
+    }
+
+    public String getNameOfConference() {
+        return nameOfConference;
+    }
+
+    public void setNameOfConference(String nameOfConference) {
+        this.nameOfConference = nameOfConference;
+    }
+
+    public List<Conference> getListOfConference() {
+        return listOfConference;
+    }
+
+    public void setListOfConference(List<Conference> listOfConference) {
+        this.listOfConference = listOfConference;
+    }
+
+    @Override
+    public String toString() {
+        return "Conference{" +
+                "nameOfConference='" + nameOfConference + '\'' +
+                ", listOfConference=" + listOfConference +
+                '}';
+    }
+}
