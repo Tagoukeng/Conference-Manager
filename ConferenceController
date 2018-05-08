@@ -1,0 +1,38 @@
+package com.conference.microConference.web.controller;
+
+import com.conference.microConference.dao.ConferenceDao;
+import com.conference.microConference.model.Conference;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class ConferenceController {
+    /*
+     on cree une variable de type Dao afin que spring fabrique
+     une instance. Ainsi cette Variable a acces a toute les methodes
+     cree chez ConferenceDAo
+      */
+    @Autowired
+    private ConferenceDao ConferenceDao;
+
+    //recuperer la liste des conferences
+    @RequestMapping(value = "/Conferences", method = RequestMethod.GET)
+    public List<Conference> conferenceList(){
+        return ConferenceDao.findAll();
+    }
+
+    @GetMapping(value = "/Conferences/{name}")
+    public Conference ChildConferenceList(@PathVariable String name){
+        /*
+        Normalerweise soll ich an dieser Stelle eine Konferenz
+        mit dem gegebenen Name in meiner Datenbank suchen und dem benutzer
+        zurueckgeben.
+         */
+
+        return ConferenceDao.ConferencefindByName(name);
+    }
+}
+
+
